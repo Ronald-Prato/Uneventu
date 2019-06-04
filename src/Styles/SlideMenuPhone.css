@@ -1,0 +1,30 @@
+.main-slide-container {
+    overflow: hidden;
+    width: 85%;
+    height: 100vh;
+    background: #191919;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+
+    transform: translateX(-100%);
+}
+
+.main-slide-menu-title {
+    font-weight: lighter;
+    font-size: 1.8em;
+    width: 100%;
+    text-align: center;
+}
+
+.menu-container {
+    list-style: none;
+    padding: 0;
+}
+.single-option {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    line-height: 2em;
+}
