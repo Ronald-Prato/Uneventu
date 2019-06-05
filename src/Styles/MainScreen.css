@@ -85,5 +85,10 @@
         border-radius: 5px;
         display: flex;
         align-items: center;
+        transition: ease-in-out .1s .05s;
+    }
+    .inline:active {
+        background: white;
+        color: black;
     }
 }

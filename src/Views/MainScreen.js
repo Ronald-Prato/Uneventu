@@ -7,11 +7,18 @@ import SlideMenuPhone from '../Components/SlideMenuPhone'
 
 const MainScreen = () => {
     const { state, actions } = useContext(Context);
-    const theme = { dark: {'background': '#262626', color: 'white'}, light: {'background': 'white', color: '#262626'}};
+
+    // Functions =>
+    const showMenu = () => {
+        actions({
+            type: 'setState',
+            payload: {...state, menu: {transform: 'translateX(0)'}}
+        });
+    };
 
     return (
-        <div style={theme.dark} className="main-screen-container">
-            <section className="menu-icon">
+        <div style={state.theme} className="main-screen-container">
+            <section onClick={showMenu} className="menu-icon">
                 <span className="material-icons">menu</span>
             </section>
 
