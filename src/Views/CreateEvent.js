@@ -53,7 +53,6 @@ const materialTheme = createMuiTheme({
     },
 });
 
-
 const CreateEvent = () => {
     const {state, actions} = useContext(Context);
     const local_state = {
@@ -87,7 +86,8 @@ const CreateEvent = () => {
             timer: 1500,
             onBeforeOpen: () => {
                 Swal.showLoading();
-                timerInterval = setInterval(() => {}, 200)
+                timerInterval = setInterval(() => {
+                }, 500)
             },
             onClose: () => {
                 clearInterval(timerInterval)
@@ -102,11 +102,11 @@ const CreateEvent = () => {
                 cancelButtonColor: '#39dd77',
                 confirmButtonText: 'Add more',
                 cancelButtonText: 'Back to menu'
-            }).then( res => {
+            }).then(res => {
                 if (!res.value) {
                     setRender('back');
                 }
-            }).then(() =>  setLocalState(local_state))
+            }).then(() => setLocalState(local_state))
         )
     };
 
@@ -118,10 +118,10 @@ const CreateEvent = () => {
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, back to menu'
+            confirmButtonText: 'Yes, go to menu'
         }).then((result) => {
             if (result.value) {
-                setRender('back');
+                setTimeout(() => setRender('back'), 200)
             }
         })
     }
@@ -132,56 +132,58 @@ const CreateEvent = () => {
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <ThemeProvider theme={materialTheme}>
 
-                    <h2 style={{'marginLeft': '.5em'}}> Create a New Event </h2>
+                    <h2 className="create-event-title"> Create a New Event </h2>
 
-                    <section className="form-container">
-                        <div style={{height: 'auto'}} className="d-flex flex-column justify-content-center w-100">
-                            <p className="placeHolder">Event Name</p>
-                            <input
-                                onChange={e => setLocalState({...localState, name: e.target.value})}
-                                type="text"
-                                className="form-item form-name"
-                                value={localState.name}
-                            />
-                        </div>
+                    <div className="center-in-l">
+                        <section className="form-container">
+                            <div className="d-flex flex-column justify-content-center single-input-container">
+                                <p className="placeHolder">Event Name</p>
+                                <input
+                                    onChange={e => setLocalState({...localState, name: e.target.value})}
+                                    type="text"
+                                    className="form-item form-name"
+                                    value={localState.name}
+                                />
+                            </div>
 
-                        <div style={{marginTop: '-1.5em'}} className="d-flex flex-column justify-content-center">
-                            <p className="placeHolder">Event Description</p>
-                            <textarea
-                                onChange={e => setLocalState({...localState, description: e.target.value})}
-                                className="form-item form-description"
-                                value={localState.description}
-                            />
-                        </div>
+                            <div className="d-flex flex-column justify-content-center single-input-container-2">
+                                <p className="placeHolder">Event Description</p>
+                                <textarea
+                                    onChange={e => setLocalState({...localState, description: e.target.value})}
+                                    className="form-item form-description"
+                                    value={localState.description}
+                                />
+                            </div>
 
-                        <div className="d-flex flex-column justify-content-center">
+                            <div className="d-flex flex-column justify-content-center">
 
-                            <KeyboardDatePicker
-                                margin="normal"
-                                id="mui-pickers-date"
-                                className="mui-pickers"
-                                label="Date picker"
-                                value={localState.date}
-                                onChange={handleDateChange}
-                                classes={{'background': 'white'}}
-                            />
+                                <KeyboardDatePicker
+                                    margin="normal"
+                                    id="mui-pickers-date"
+                                    className="mui-pickers"
+                                    label="Date picker"
+                                    value={localState.date}
+                                    onChange={handleDateChange}
+                                    classes={{'background': 'white'}}
+                                />
 
-                            <KeyboardTimePicker
-                                margin="normal"
-                                id="mui-pickers-time"
-                                className="mui-pickers"
-                                label="Time picker"
-                                value={localState.time}
-                                onChange={handleTimeChange}
-                            />
+                                <KeyboardTimePicker
+                                    margin="normal"
+                                    id="mui-pickers-time"
+                                    className="mui-pickers"
+                                    label="Time picker"
+                                    value={localState.time}
+                                    onChange={handleTimeChange}
+                                />
 
-                        </div>
+                            </div>
 
-                        <section className="buttons-container">
-                            <button onClick={submitLocalState} className="form-button b-create"> Create </button>
-                            <button onClick={backToMenu} className="form-button b-cancel"> Cancel </button>
+                            <section className="buttons-container">
+                                <button onClick={submitLocalState} className="form-button b-create"> Create</button>
+                                <button onClick={backToMenu} className="form-button b-cancel"> Cancel</button>
+                            </section>
                         </section>
-                    </section>
+                    </div>
 
                 </ThemeProvider>
             </MuiPickersUtilsProvider>
@@ -189,6 +191,7 @@ const CreateEvent = () => {
             {/*<button style={{position: 'absolute', top: 0}} onClick={() => console.log(state.events)}>Check</button>*/}
             {/*<button style={{position: 'absolute', top: 0, right: '15%'}} onClick={() => console.log(localState)}>Check Local</button>*/}
         </div>
+
         : <Redirect to='/main'/>
 
 };

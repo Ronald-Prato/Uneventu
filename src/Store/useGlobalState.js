@@ -3,7 +3,8 @@ import { useState } from 'react'
 let global_state = {
     events: [],
     menu: {transform: 'translateX(-100%)'},
-    theme: {background: '#282828', color: 'white'}
+    theme: {background: '#282828', color: 'white'},
+    slideMenu: ''
 };
 
 const useGlobalState = () => {
