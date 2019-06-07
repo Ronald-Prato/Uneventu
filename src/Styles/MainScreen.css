@@ -11,8 +11,8 @@
 
 .main-layout-container {
     display: grid;
-    grid-template-rows: 2fr 4fr;
-    animation: appear 400ms 200ms;
+    grid-template-rows: 1fr 2fr;
+    animation: appear 600ms;
 }
 @keyframes appear {
     from {
@@ -73,7 +73,7 @@
 }
 
 
-@media only screen and (max-width : 420px) {
+@media (min-width: 100px) and (max-width : 420px) {
 
     .add-new-event-message {
         font-size: 1.2em;
@@ -106,23 +106,51 @@
     .slide-menu-laptop {
         display: none;
     }
+    .main-layout-container-events {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        animation: appear 600ms;
+    }
+
+    .main-layout-events {
+        background: #303130;
+        height: 35em;
+        width: 85%;
+        padding-top: 1%;
+    }
 }
 
-@media (min-width : 450px) {
+@media (min-width : 455px) and (max-width: 1000px) {
     .main-screen-container {
         width: 100%;
         height: 100vh;
         display: grid;
-        grid-template-columns: 1fr 7fr;
+        grid-template-columns: 2fr 5fr;
         overflow: hidden;
         position: relative;
+    }
+    .main-layout-container-events {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        animation: appear 600ms;
+    }
+    .main-layout-events {
+        background: #303130;
+        height: 90%;
+        width: 90%;
+        padding-top: 1%;
+        margin-top: 2em;
     }
     .inline {
         margin-top: 4em;
         display: flex;
         justify-content: space-around;
         align-items: center;
-        width: 12%;
+        width: 20%;
         height: 2.5em;
         border: 1px solid white;
         border-radius: 5px;
@@ -136,11 +164,85 @@
     .slide-menu-phone {
         display: none;
     }
-    .main-layout-container {
+    .main-layout-events {
+        background: #303130;
+        height: 35em;
+        width: 100%;
+        padding-top: 1%;
+    }
+    .reduce-height {
+        margin-top: 6em;
+        height: 90%;
+    }
+    .slide-menu-laptop {
+        height: 1em;
+        width: 100%;
+        position: relative;
+    }
+
+}
+
+@media (min-width : 1050px) and (max-width: 1400px) {
+    .main-screen-container {
+        width: 100%;
+        height: 100vh;
         display: grid;
-        grid-template-rows: 2fr 4fr;
-        animation: appear 400ms 200ms;
-        height: 80%;
+        grid-template-columns: 1fr 4fr;
+        overflow: hidden;
+        position: relative;
+    }
+    .main-layout-container-events {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        animation: appear 600ms;
+    }
+    .main-layout-events {
+        background: #303130;
+        height: 90%;
+        width: 90%;
+        padding-top: 1%;
         margin-top: 2em;
     }
+    .inline {
+        margin-top: 4em;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 15%;
+        height: 2.5em;
+        border: 1px solid white;
+        border-radius: 5px;
+        transition: ease-in-out .15s;
+    }
+    .inline:hover {
+        cursor: pointer;
+        background: white;
+        color: black;
+    }
+    .slide-menu-phone {
+        display: none;
+    }
+    .main-layout-events {
+        background: #303130;
+        height: 35em;
+        width: 100%;
+        padding-top: 1%;
+    }
+    .reduce-height {
+        margin-top: 6em;
+        height: 90%;
+    }
+    .main-slide-container-l {
+        width: 100%;
+    }
+    .slide-menu-laptop {
+        height: 1em;
+        width: 100%;
+        position: relative;
+    }
+
 }
+
+

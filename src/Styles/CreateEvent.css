@@ -55,7 +55,7 @@
     height: 10em;
 }
 
-@media only screen and (max-width : 420px) {
+@media (min-width: 100px) and (max-width : 450px) {
     .form-container {
         display: grid;
         grid-template-columns: 1fr;
@@ -101,7 +101,90 @@
     border: 2px solid tomato;
 }
 
-@media (min-width: 1325px) {
+@media (min-width : 455px) and (max-width: 1000px) {
+    .form-container {
+        width: 45%;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: .1fr 1fr 1fr 1fr;
+        grid-gap: .5em;
+        margin: 2em 0 0 0;
+    }
+    .center-in-l {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .form-name {
+        height: 3em;
+        padding-left: 2%;
+    }
+
+    .form-description {
+        height: 8em;
+        padding: 2% 0 0 2%;
+    }
+
+    .form-item {
+        border-radius: 5px;
+        border: 1px solid black;
+        font-weight: bolder;
+        width: 98%;
+        background: antiquewhite;
+    }
+
+    .form-item::placeholder {
+        color: #202020;
+    }
+
+    .mui-pickers {
+        width: 100%;
+        color: white;
+    }
+    .single-input-container-2 {
+        margin: 0;
+    }
+    .buttons-container {
+        position: absolute;
+        top: 0;
+        right: 2%;
+
+        width: 20em;
+        display: flex;
+        justify-content: space-around;
+        margin-top: 2em;
+    }
+    .form-button {
+        width: 35%;
+        height: 2em;
+        font-weight: lighter;
+        font-size: 1.2em;
+        border-radius: 5px;
+        box-shadow: none;
+        color: white;
+        background: rgba(255, 255, 255, 0);
+        transition: ease-in-out .1s;
+    }
+    .b-create:hover {
+        cursor: pointer;
+        color: white;
+        background: steelblue;
+        border-color: #325c7d;
+    }
+    .b-cancel:hover {
+        cursor: pointer;
+        color: white;
+        background: tomato;
+        border-color: #b34535;
+    }
+    .create-event-title {
+        margin-left: .5em;
+        font-weight: lighter;
+    }
+}
+
+@media (min-width: 1050px) and (max-width: 1400px) {
     .form-container {
         width: 45%;
         display: grid;

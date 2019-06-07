@@ -5,7 +5,7 @@ import DateFnsUtils from "@date-io/date-fns";
 import {createMuiTheme} from "@material-ui/core";
 import {ThemeProvider} from "@material-ui/styles";
 import Swal from 'sweetalert2';
-import {Redirect} from "react-router-dom";
+import {withRouter} from 'react-router-dom'
 
 import {
     MuiPickersUtilsProvider,
@@ -53,7 +53,7 @@ const materialTheme = createMuiTheme({
     },
 });
 
-const CreateEvent = () => {
+const CreateEvent = withRouter(props => {
     const {state, actions} = useContext(Context);
     const local_state = {
         name: "",
@@ -104,7 +104,7 @@ const CreateEvent = () => {
                 cancelButtonText: 'Back to menu'
             }).then(res => {
                 if (!res.value) {
-                    setRender('back');
+                    props.history.push('/main');
                 }
             }).then(() => setLocalState(local_state))
         )
@@ -121,13 +121,14 @@ const CreateEvent = () => {
             confirmButtonText: 'Yes, go to menu'
         }).then((result) => {
             if (result.value) {
-                setTimeout(() => setRender('back'), 200)
+                props.history.push('/main');
             }
         })
-    }
+    };
 
 
-    return render === '' ?
+
+    return (
         <div className="create-event-container">
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <ThemeProvider theme={materialTheme}>
@@ -191,9 +192,8 @@ const CreateEvent = () => {
             {/*<button style={{position: 'absolute', top: 0}} onClick={() => console.log(state.events)}>Check</button>*/}
             {/*<button style={{position: 'absolute', top: 0, right: '15%'}} onClick={() => console.log(localState)}>Check Local</button>*/}
         </div>
+    )
 
-        : <Redirect to='/main'/>
+});
 
-};
-
-export default CreateEvent;
+export default (CreateEvent);
