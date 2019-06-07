@@ -165,14 +165,14 @@
     }
     .slide-menu-phone {
         display: none;
-    }
+    } 
     .main-layout-events {
         background: #303130;
         height: 35em;
         width: 100%;
         padding-top: 1%;
         overflow: scroll;
-    } 
+    }
     .reduce-height {
         margin-top: 6em;
         height: 90%;
