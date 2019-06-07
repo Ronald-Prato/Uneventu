@@ -83,7 +83,7 @@ const CreateEvent = withRouter(props => {
         Swal.fire({
             title: 'Adding your event',
             html: '<strong> Please wait </strong>',
-            timer: 1500,
+            timer: 800,
             onBeforeOpen: () => {
                 Swal.showLoading();
                 timerInterval = setInterval(() => {
@@ -104,7 +104,9 @@ const CreateEvent = withRouter(props => {
                 cancelButtonText: 'Back to menu'
             }).then(res => {
                 if (!res.value) {
-                    props.history.push('/main');
+                    props.history.push('/main')
+                }else {
+                    console.log('Creating a new event...')
                 }
             }).then(() => setLocalState(local_state))
         )

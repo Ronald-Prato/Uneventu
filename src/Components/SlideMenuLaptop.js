@@ -2,9 +2,11 @@ import React, { useContext, useState } from 'react'
 import Context from '../Store/Context'
 import '../Styles/SlideMenuLaptop.css'
 import {Redirect} from "react-router-dom";
+import {withRouter} from 'react-router-dom'
 
 
-const SlideMenuLaptop = () => {
+
+const SlideMenuLaptop = withRouter(props => {
     //  ==================   Hooks ==================== //
     const {state, actions} = useContext(Context);
     // ================================================ //
@@ -22,13 +24,13 @@ const SlideMenuLaptop = () => {
     const optionSelected = (option) => () => {
         switch (option[0]) {
             case 'Add': {
-                setTimeout(() => actions({type: 'setState', payload: {...state, slideMenu: 'create'}}), 400)
+                setTimeout(() => props.history.push('/create'), 400)
             }break;
             case 'My Events': {
-                actions({type: 'slideRendering', payload: {...state, slideMenu: 'my_events'}})
+                props.history.push('/my_events')
             }break;
             case 'Top Events': {
-                actions({type: 'slideRendering', payload: {...state, slideMenu: 'top_events'}})
+                props.history.push('/top_events')
             }break;
             default: return state.slideMenu;
         }
@@ -60,6 +62,6 @@ const SlideMenuLaptop = () => {
         <Redirect to={`/${state.slideMenu}`}/>;
     // ===========================================================//
 
-};
+});
 
 export default SlideMenuLaptop;

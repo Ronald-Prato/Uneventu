@@ -57,8 +57,8 @@ const MainScreen = withRouter(props => {
 
                 </div>
             )
-        }else if (state.events.length > 0 && render === '') {
-                return (
+        }else {
+            return (
                 <div style={state.theme} className="main-screen-container">
                     <section onClick={showMenu} className="menu-icon">
                         <span className="material-icons">menu</span>
@@ -81,8 +81,6 @@ const MainScreen = withRouter(props => {
 
                 </div>
             )
-        }else if (render !== '') {
-            props.history.push('/'+render)
         }
     };
 
