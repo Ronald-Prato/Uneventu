@@ -1,13 +1,24 @@
-import React, { useContext, useState } from 'react'
+import React, {useContext, useLayoutEffect, useRef} from 'react'
 import Context from '../Store/Context'
 import '../Styles/SlideMenuPhone.css'
 import {withRouter} from 'react-router-dom'
+import Hammer from "hammerjs";
+//import * as firebase from "firebase";
 
 const SlideMenuPhone = withRouter(props => {
     //  ==================   Hooks ==================== //
     const {state, actions} = useContext(Context);
+    const elm = useRef(null);
     // ================================================ //
 
+
+    // ==================== LifeCycles ===================//
+    useLayoutEffect(() => {
+        const h = new Hammer(elm.current);
+        h.on("panleft", () => hideMenu());
+    });
+
+    //===================================================//
 
 
     // ==================== Functions ====================//
@@ -56,7 +67,7 @@ const SlideMenuPhone = withRouter(props => {
 
     // =========================== Render ========================//
         return (
-            <div style={state.menu} className="main-slide-container">
+            <div ref={elm} style={state.menu} className="main-slide-container">
                 <div className="title-container">
                     <h4 className="main-slide-menu-title"> Uneventu </h4>
                     <span

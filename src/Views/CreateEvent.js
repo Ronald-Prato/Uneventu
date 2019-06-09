@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import Context from '../Store/Context'
 import '../Styles/CreateEvent.css'
 import DateFnsUtils from "@date-io/date-fns";
@@ -6,6 +6,7 @@ import {createMuiTheme} from "@material-ui/core";
 import {ThemeProvider} from "@material-ui/styles";
 import Swal from 'sweetalert2';
 import {withRouter} from 'react-router-dom'
+import * as firebase from 'firebase'
 
 import {
     MuiPickersUtilsProvider,
@@ -64,6 +65,11 @@ const CreateEvent = withRouter(props => {
     const [localState, setLocalState] = useState(local_state);
     const [render, setRender] = useState('');
 
+
+
+
+
+
     const handleDateChange = date => {
         setLocalState({...localState, date});
     };
@@ -74,10 +80,15 @@ const CreateEvent = withRouter(props => {
 
     const submitLocalState = e => {
         e.preventDefault();
-        actions({
-            type: 'setState',
-            payload: {...state, events: [...state.events, localState]}
+
+        firebase.firestore().collection('events').add(localState).then(() => {
+            actions({
+                type: 'setState',
+                payload: {...state, events: [...state.events, localState]}
+            });
         });
+
+
 
         let timerInterval;
         Swal.fire({
@@ -127,6 +138,8 @@ const CreateEvent = withRouter(props => {
             }
         })
     };
+
+
 
 
 
@@ -191,7 +204,7 @@ const CreateEvent = withRouter(props => {
                 </ThemeProvider>
             </MuiPickersUtilsProvider>
 
-            {/*<button style={{position: 'absolute', top: 0}} onClick={() => console.log(state.events)}>Check</button>*/}
+            {/*<button style={{position: 'absolute', top: 0}} onClick={() => firebase_add()}>Check</button>*/}
             {/*<button style={{position: 'absolute', top: 0, right: '15%'}} onClick={() => console.log(localState)}>Check Local</button>*/}
         </div>
     )

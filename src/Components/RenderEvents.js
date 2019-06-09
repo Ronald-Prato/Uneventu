@@ -1,10 +1,17 @@
-import React, { useContext } from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import Context from '../Store/Context'
 import '../Styles/RenderEvents.css'
 import 'material-icons'
 
 const RenderEvents = () => {
     const {state, actions} = useContext(Context);
+
+    useEffect(() => {
+        actions({
+            type: 'updateStore'
+        })
+    });
+
 
     return (
         <div className="scrolled">
